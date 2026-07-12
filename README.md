@@ -30,7 +30,7 @@ The two examples in [`examples/`](examples/) are already generated — **preview
 ## Quickstart
 
 ```bash
-git clone https://github.com/Florian1995-ai/story-telling-header
+git clone https://github.com/florianrolke/story-telling-header
 cd story-telling-header
 pip install -r requirements.txt
 
