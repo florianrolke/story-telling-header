@@ -6,9 +6,8 @@ Run it, answer a few questions, and it writes a ready-to-generate config:
 
     python scripts/new_story.py
 
-It first asks whether you're making a PROPOSAL (win a client — the Matt Knights
-pattern) or a BLOG / landing page (show off a product — the honey-site pattern),
-then walks you through a 4-scene journey. It bakes in the two cinematic rules for
+It first asks whether you're making a PROPOSAL (win a client) or a BLOG / landing
+page (show off a product), then walks you through a 4-scene customer journey. It bakes in the two cinematic rules for
 you automatically: every camera move drifts upward (so the four scenes feel like
 one continuous ascent) and the scenes brighten as they rise.
 
@@ -25,7 +24,7 @@ ROOT = Path(__file__).resolve().parent.parent
 # ---- the two journey frameworks (this is the "lead them through it" part) ----
 FRAMEWORKS = {
     "proposal": {
-        "label": "Proposal — win a client (the Matt Knights pattern)",
+        "label": "Proposal — win a client (lead them to a decision)",
         "brand_q": "Your headline (e.g. 'Acme x You' or your name)",
         "prepared_for_q": "Who is this proposal for? (client / company name)",
         "eyebrow_tmpl": "PROPOSAL - PREPARED FOR {prepared_for}",
