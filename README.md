@@ -35,9 +35,11 @@ cd story-telling-header
 pip install -r requirements.txt
 
 cp .env.example .env            # then paste your OPENROUTER_API_KEY into .env
-cp examples/blog/story.config.json story.config.json   # start from an example
 
-# --- edit story.config.json: describe your 4 scenes (the only thing you must change) ---
+# --- create your config: describe your 4 scenes (the only thing you must write) ---
+python scripts/new_story.py     # guided wizard (recommended) — see "Guided setup" below
+#   ...or start from an example and edit by hand:
+#   cp examples/blog/story.config.json story.config.json
 
 python scripts/generate_images.py   # 4 keyframes  -> assets/hero/  (~$0.32, review them!)
 python scripts/generate_video.py    # 4 clips + stitched ascent.mp4 -> assets/hero/  (~$2.56, ~12 min)
@@ -52,6 +54,31 @@ python -m http.server 8000 --directory dist
 The scroll-scrub uses a `blob:` video source that only works over `http://` (see
 [docs/gotchas.md](docs/gotchas.md)). Without a server it falls back to a still-image
 cross-fade — still nice, but not the scrub.
+
+---
+
+## Guided setup — `new_story.py`
+
+Don't want to hand-write JSON? Run the wizard:
+
+```bash
+python scripts/new_story.py
+```
+
+It asks the one question that matters first — **are you making a proposal or a blog page?** —
+then leads you through a **customer journey** in four scenes:
+
+- **Proposal** (win a client — the pattern behind a real client proposal): *the starting point →
+  the work → the stakes → the summit.* You lead the client from where they stand today to the
+  future you're selling them.
+- **Blog / landing page** (show off a product — the pattern behind a product site): *the origin →
+  the craft → the moment → the payoff.* You walk the product from where it comes from to what your
+  customer gets.
+
+For each scene it asks what it looks like and one headline, and it **bakes in the cinematic rules
+for you** — every camera move drifts upward and the scenes brighten as they rise, so the four clips
+feel like one continuous ascent. It writes `story.config.json`; then run the three generate/build
+commands above.
 
 ---
 
@@ -83,19 +110,23 @@ Two tips that make it cinematic:
 
 ---
 
-## Two skins
+## Three examples to look at and borrow
 
-Set `"style"` in the config:
+All three are fully pre-generated — clone and preview them immediately, no key, no spend.
+Copy any one's `story.config.json` as your starting point.
 
-| `"style"` | For | Example |
-|-----------|-----|---------|
-| `"blog"` | A landing page / content site with a story-driven header | [`examples/blog/`](examples/blog/) — *Mountain Honey Co.* |
-| `"proposal"` | A one-page client proposal with pricing | [`examples/proposal/`](examples/proposal/) — *Acme Content Engine* |
+| Example | Style | Journey | Live demo |
+|---------|-------|---------|-----------|
+| [`examples/blog/`](examples/blog/) — *Mountain Honey Co.* | `blog` | mountains → bees → table → jar | [demo](https://story-header-blog.pages.dev) |
+| [`examples/proposal/`](examples/proposal/) — *Acme × You* | `proposal` | workshop → desk → neighbourhood → countryside | [demo](https://story-header-proposal-acme.pages.dev) |
+| [`examples/proposal-alt/`](examples/proposal-alt/) — *Ironline × You* | `proposal` | same page, alternate heavy-industry footage | [demo](https://story-header-proposal-alt.pages.dev) |
 
-Preview an example immediately (no key, no spend):
+The two proposals share the same layout with **different generated footage** — a side-by-side of
+how much the clips change the feel. Preview any locally:
 ```bash
 python -m http.server 8001 --directory examples/blog/dist
 python -m http.server 8002 --directory examples/proposal/dist
+python -m http.server 8003 --directory examples/proposal-alt/dist
 ```
 
 ---
